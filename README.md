@@ -1,5 +1,7 @@
-# sejutahati
-Jalankan docker file : docker-compose up -d
+Menjalankan container:
+======================
+Masuk directory docker-compose
+Jalankan file : #docker-compose up -d
 
 Register
 ======================
