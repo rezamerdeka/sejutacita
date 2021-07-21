@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  api:
+   image: rezamerdeka/api-node
+   networks:
+      - reza
+   restart: always
+   container_name: nodejs
+   ports:
+    - 5000:5000
+   links:
+      - mysql
+   environment:
+      WAIT_HOSTS: mysqldock:3306
+
+  mysql:
+   image: mysql:5.7
+   networks:
+      reza:
+        aliases:
+          - mysqldock
+   restart: always
+   container_name: db-mysql
+   ports:
+    - 3306:3306
+   environment:
+     MYSQL_ROOT_PASSWORD: 12345
+     MYSQL_USER: crud
+     MYSQL_PASSWORD: 12345
+   volumes:
+    - ./struct.sql:/docker-entrypoint-initdb.d/dump.sql
+
+networks:
+   reza:
